@@ -13,6 +13,6 @@ module.exports = {
             return res.status(400).json({error: "Não há ong cadastrada com esse id"});
         }
 
-        return res.json({ong})
+        return res.json({ong});
     }
 }
