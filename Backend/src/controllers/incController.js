@@ -2,14 +2,14 @@ const conect = require('../database/conect');
 
 module.exports = {
     async index (req, res) {
-        const {pages = 1} = req.query;
+        const {page = 1} = req.query;
 
         const [count] = await conect('incidents').count();
 
         const incidents = await conect('incidents')
             .join('ongs', 'ongs.id', "=", "incidents.ong_id")
             .limit(5)
-            .offset((pages - 1)*5)
+            .offset((page - 1) * 5)
             .select(['incidents.*', 
                     'ongs.nome', 
                     'ongs.email', 
